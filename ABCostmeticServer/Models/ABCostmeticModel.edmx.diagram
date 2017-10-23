@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a34ef3d73fc64397a90b8b3b4425994f" Name="Diagram1">
+        <EntityTypeShape EntityType="WCF_ABCostmeticModel.Category" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WCF_ABCostmeticModel.Customer" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WCF_ABCostmeticModel.Employee" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WCF_ABCostmeticModel.Nationality" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WCF_ABCostmeticModel.OrderDetail" Width="1.5" PointX="9.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WCF_ABCostmeticModel.Order" Width="1.5" PointX="7.5" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WCF_ABCostmeticModel.Payment" Width="1.5" PointX="9.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WCF_ABCostmeticModel.Product" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WCF_ABCostmeticModel.StaffType" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WCF_ABCostmeticModel.Store" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WCF_ABCostmeticModel.User" Width="1.5" PointX="7.5" PointY="13.5" IsExpanded="true" />
+        <AssociationConnector Association="WCF_ABCostmeticModel.FK_Products_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="WCF_ABCostmeticModel.FK_Orders_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="WCF_ABCostmeticModel.FK_Employees_Nationality" ManuallyRouted="false" />
+        <AssociationConnector Association="WCF_ABCostmeticModel.FK_Employees_StaffTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="WCF_ABCostmeticModel.FK_Employees_Stores" ManuallyRouted="false" />
+        <AssociationConnector Association="WCF_ABCostmeticModel.FK_Orders_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="WCF_ABCostmeticModel.FK_Users_Employees" ManuallyRouted="false" />
+        <AssociationConnector Association="WCF_ABCostmeticModel.FK_Stores_Nationality" ManuallyRouted="false" />
+        <AssociationConnector Association="WCF_ABCostmeticModel.FK_OrderDetails_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="WCF_ABCostmeticModel.FK_OrderDetails_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="WCF_ABCostmeticModel.FK_Payments_Orders" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
