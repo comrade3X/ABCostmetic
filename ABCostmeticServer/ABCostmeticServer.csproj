@@ -188,6 +188,17 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DTO\CategoryDto.cs" />
+    <Compile Include="DTO\CustomerDto.cs" />
+    <Compile Include="DTO\EmployeeDto.cs" />
+    <Compile Include="DTO\NationalDto.cs" />
+    <Compile Include="DTO\OrderDetailDto.cs" />
+    <Compile Include="DTO\OrderDto.cs" />
+    <Compile Include="DTO\PaymentDto.cs" />
+    <Compile Include="DTO\ProductDto.cs" />
+    <Compile Include="DTO\StaffTypeDto.cs" />
+    <Compile Include="DTO\StoreDto.cs" />
+    <Compile Include="DTO\UserDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -9,30 +9,19 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ABCostmeticServer.Models;
+using ABCostmeticServer.DTO;
 
 namespace ABCostmeticServer.Controllers
 {
-    public class ProductDto
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-    }
-
     public class ProductsController : ApiController
     {
         private WCF_ABCostmeticEntities db = new WCF_ABCostmeticEntities();
 
         // GET: api/Products
-        public IQueryable<ProductDto> GetProducts()
+        public List<ProductDto> GetProducts()
         {
             var products = db.Products;
-            var list = from s in products
-                       select new ProductDto
-                       {
-                           Id = s.Id,
-                           Name = s.Name
-                       };
+            var list = ProductDto.ConvertToDto(products);
 
             return list;
         }
