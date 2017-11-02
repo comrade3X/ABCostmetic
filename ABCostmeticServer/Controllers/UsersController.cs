@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ABCostmeticServer.Models;
+using ABCostmeticServer.DTO;
 
 namespace ABCostmeticServer.Controllers
 {
@@ -16,11 +17,25 @@ namespace ABCostmeticServer.Controllers
     {
         private WCF_ABCostmeticEntities db = new WCF_ABCostmeticEntities();
 
+        [HttpPost]
+        public UserDto Login(User param)
+        {
+            if (string.IsNullOrEmpty(param.Username) || string.IsNullOrEmpty(param.Password))
+            {
+                return null;
+            }
+
+            var user = db.Users.FirstOrDefault(x => x.Username.Equals(param.Username) && x.Password.Equals(param.Password));
+
+            return UserDto.ConvertToDto(user);
+        }
+
         // GET: api/Users
-        public List<User> GetUsers()
+        public List<UserDto> GetUsers()
         {
             var res = db.Users.ToList();
-            return res;
+            var res2 = UserDto.ConvertToDto(res);
+            return res2.ToList();
         }
 
         // GET: api/Users/5

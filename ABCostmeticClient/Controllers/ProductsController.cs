@@ -11,9 +11,13 @@ namespace ABCostmeticClient.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var productClient = new ProductClient();
-
-            var list = productClient.FindAll();
+            var userClient = new UserClient();
+            var user = new User
+            {
+                Username = "admin",
+                Password = "123456",
+            };
+            ViewBag.User = userClient.Login(user);
 
             return View();
         }

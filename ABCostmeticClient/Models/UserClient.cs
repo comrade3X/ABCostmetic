@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Web;
 using System.Net.Http.Headers;
+using System.Web;
 
 namespace ABCostmeticClient.Models
 {
-    public class ProductClient
+    public class UserClient
     {
-        private string BASE_URL = "http://localhost:55863/api/products/";
+        private string BASE_URL = "http://localhost:55863/api/users/";
 
-        public IEnumerable<Product> FindAll()
+        public User Login(User user)
         {
             try
             {
@@ -20,11 +20,11 @@ namespace ABCostmeticClient.Models
                     BaseAddress = new Uri(BASE_URL)
                 };
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var response = client.GetAsync("getproducts").Result;
+                var response = client.PostAsJsonAsync("login", user).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return response.Content.ReadAsAsync<IEnumerable<Product>>().Result;
+                    return response.Content.ReadAsAsync<User>().Result;
                 }
                 return null;
             }
