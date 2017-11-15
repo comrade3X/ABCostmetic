@@ -17,17 +17,44 @@ namespace ABCostmeticServer.Controllers
     {
         private WCF_ABCostmeticEntities db = new WCF_ABCostmeticEntities();
 
+        [Route("api/users/login")]
         [HttpPost]
-        public UserDto Login(User param)
+        public IHttpActionResult Login([FromBody]UserDto param)
         {
             if (string.IsNullOrEmpty(param.Username) || string.IsNullOrEmpty(param.Password))
             {
-                return null;
+                return NotFound();
             }
 
             var user = db.Users.FirstOrDefault(x => x.Username.Equals(param.Username) && x.Password.Equals(param.Password));
+            var res = UserDto.ConvertToDto(user);
 
-            return UserDto.ConvertToDto(user);
+            return Ok(res);
+        }
+
+        [Route("api/users/getuserrole")]
+        /// <summary>
+        /// Get user role from user object
+        /// </summary>
+        /// <param name="emplId">Staff id </param>
+        /// <returns>Staff type object</returns>
+        public IHttpActionResult GetUserRole(int emplId)
+        {
+            if (emplId == 0)
+            {
+                return NotFound();
+            }
+
+            var empl = db.Employees.Find(emplId);
+
+            if (empl == null)
+            {
+                return NotFound();
+            }
+
+            var emplDto = EmployeeDto.ConvertToDto(empl);
+
+            return Ok(emplDto.StaffType);
         }
 
         // GET: api/Users

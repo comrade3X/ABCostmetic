@@ -34,8 +34,8 @@ namespace ABCostmeticServer.DTO
                 Name = m.Name,
                 Price = m.Price,
                 Descriptions = m.Descriptions,
-                Category = CategoryDto.ConvertToDto(m.Category),
-                OrderDetails = OrderDetailDto.ConvertToDto(m.OrderDetails)
+                //Category = CategoryDto.ConvertToDto(m.Category),
+                //OrderDetails = OrderDetailDto.ConvertToDto(m.OrderDetails)
             };
 
             return res;

@@ -40,10 +40,10 @@ namespace ABCostmeticServer.DTO
                 Seller = m.Seller,
                 Customer = m.Customer,
                 OrderDate = m.OrderDate,
-                Customer1 = CustomerDto.ConvertToDto(m.Customer1),
-                Employee = EmployeeDto.ConvertToDto(m.Employee),
-                OrderDetails = OrderDetailDto.ConvertToDto(m.OrderDetails),
-                Payments = PaymentDto.ConvertToDto(m.Payments)
+                //Customer1 = CustomerDto.ConvertToDto(m.Customer1),
+                //Employee = EmployeeDto.ConvertToDto(m.Employee),
+                //OrderDetails = OrderDetailDto.ConvertToDto(m.OrderDetails),
+                //Payments = PaymentDto.ConvertToDto(m.Payments)
             };
             return res;
         }

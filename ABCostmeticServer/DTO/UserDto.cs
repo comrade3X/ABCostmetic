@@ -31,7 +31,7 @@ namespace ABCostmeticServer.DTO
                 Username = user.Username,
                 Password = user.Password,
                 StaffId = user.StaffId,
-                Employee = EmployeeDto.ConvertToDto(user.Employee)
+                //Employee = EmployeeDto.ConvertToDto(user.Employee)
             };
 
             return res;

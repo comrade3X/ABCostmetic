@@ -31,12 +31,15 @@ namespace ABCostmeticServer.Controllers
         public IHttpActionResult GetProduct(int id)
         {
             Product product = db.Products.Find(id);
+            
             if (product == null)
             {
                 return NotFound();
             }
 
-            return Ok(product);
+            var res = ProductDto.ConvertToDto(product);
+
+            return Ok(res);
         }
 
         // PUT: api/Products/5

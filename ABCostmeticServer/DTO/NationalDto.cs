@@ -31,8 +31,8 @@ namespace ABCostmeticServer.DTO
                 Id = m.Id,
                 Name = m.Name,
                 ZipCode = m.ZipCode,
-                Employees = EmployeeDto.ConvertToDto(m.Employees),
-                Stores = StoreDto.ConvertToDto(m.Stores)
+                //Employees = EmployeeDto.ConvertToDto(m.Employees),
+                //Stores = StoreDto.ConvertToDto(m.Stores)
             };
 
             return res;

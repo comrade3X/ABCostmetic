@@ -33,8 +33,8 @@ namespace ABCostmeticServer.DTO
                 OrderId = m.OrderId,
                 ProductId = m.ProductId,
                 Quantity = m.Quantity,
-                Product = ProductDto.ConvertToDto(m.Product),
-                Order = OrderDto.ConvertToDto(m.Order)
+                //Product = ProductDto.ConvertToDto(m.Product),
+                //Order = OrderDto.ConvertToDto(m.Order)
             };
 
             return res;

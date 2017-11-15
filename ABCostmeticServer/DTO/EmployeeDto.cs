@@ -78,11 +78,11 @@ namespace ABCostmeticServer.DTO
                 Gender = m.Gender,
                 Phone = m.Phone,
                 Email = m.Email,
-                Nationality1 = NationalDto.ConvertToDto(m.Nationality1),
+                //Nationality1 = NationalDto.ConvertToDto(m.Nationality1),
                 StaffType = StaffTypeDto.ConvertToDto(m.StaffType),
-                Store = StoreDto.ConvertToDto(m.Store),
-                Orders = OrderDto.ConvertToDto(m.Orders),
-                Users = UserDto.ConvertToDto(m.Users)
+                //Store = StoreDto.ConvertToDto(m.Store),
+                //Orders = OrderDto.ConvertToDto(m.Orders),
+                //Users = UserDto.ConvertToDto(m.Users)
             };
 
             return res;

@@ -32,8 +32,8 @@ namespace ABCostmeticServer.DTO
                 Id = m.Id,
                 Nationality = m.Nationality,
                 Address = m.Address,
-                Nationality1 = NationalDto.ConvertToDto(m.Nationality1),
-                Employees = EmployeeDto.ConvertToDto(m.Employees)
+                //Nationality1 = NationalDto.ConvertToDto(m.Nationality1),
+                //Employees = EmployeeDto.ConvertToDto(m.Employees)
             };
 
             return res;
