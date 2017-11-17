@@ -1,0 +1,78 @@
+﻿@model ABCostmeticClient.Models.Employee
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="http://placehold.it/300x300" alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h3>
+                            @Model.FullName
+                        </h3>
+                        <small>
+                            <cite title="San Francisco, USA">
+                                @Model.Address <i class="glyphicon glyphicon-map-marker">
+                                </i>
+                            </cite>
+                        </small>
+                        <p>
+                            <i class="glyphicon glyphicon-user"></i><b>@Model.StaffType.Type</b>
+                            <br />
+                            <i class="glyphicon glyphicon-adjust"></i>Store: <b>@Model.Store.Id</b>
+                            <br />
+                            <i class="glyphicon glyphicon-envelope"></i>@Model.Email
+                            <br />
+                            <i class="glyphicon glyphicon-gift"></i>@Model.DateOfBirth.ToString("dd-MM-yyyy")
+                            <br />
+                            <i class="glyphicon glyphicon-phone"></i>@Model.Phone
+                            <br />
+                            <i class="glyphicon glyphicon-asterisk"></i>@Model.IdentityCard
+                            <br />
+                            <i class="glyphicon glyphicon-globe"></i>@Model.Nationality1.Name
+                            <br />
+                        </p>
+                        <!-- Split button -->
+                        @*<div class="btn-group">
+                                <button type="button" class="btn btn-primary">
+                                    Social
+                                </button>
+                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    <span class="caret"></span><span class="sr-only">Social</span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Twitter</a></li>
+                                    <li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>
+                                    <li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Github</a></li>
+                                </ul>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @{
+        Html.RenderAction("_EmployeeOrders", "Employee", new { emplId = Model.Id });
+    }
+</div>
+
+<style>
+    .glyphicon {
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+
+    small {
+        display: block;
+        line-height: 1.428571429;
+        color: #999;
+    }
+</style>

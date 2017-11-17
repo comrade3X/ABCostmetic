@@ -12,8 +12,9 @@ namespace ABCostmeticClient.Models
         public int Seller { get; set; }
         public int Customer { get; set; }
         public DateTime OrderDate { get; set; }
-
         public virtual Customer Customer1 { get; set; }
         public virtual Employee Employee { get; set; }
+
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }
