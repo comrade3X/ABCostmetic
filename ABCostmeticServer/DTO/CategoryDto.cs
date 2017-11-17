@@ -27,8 +27,24 @@ namespace ABCostmeticServer.DTO
             {
                 Id = m.Id,
                 Name = m.Name,
-                Descriptions = m.Descriptions,
-                Products = ProductDto.ConvertToDto(m.Products)
+                Descriptions = m.Descriptions
+            };
+
+            return res;
+        }
+
+        public static Category ConvertToModel(CategoryDto m)
+        {
+            if (m == null)
+            {
+                return new Category();
+            }
+
+            var res = new Category
+            {
+                Id = m.Id,
+                Name = m.Name,
+                Descriptions = m.Descriptions
             };
 
             return res;

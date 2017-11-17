@@ -34,7 +34,28 @@ namespace ABCostmeticServer.DTO
                 Name = m.Name,
                 Price = m.Price,
                 Descriptions = m.Descriptions,
-                //Category = CategoryDto.ConvertToDto(m.Category),
+                Category = CategoryDto.ConvertToDto(m.Category),
+                //OrderDetails = OrderDetailDto.ConvertToDto(m.OrderDetails)
+            };
+
+            return res;
+        }
+
+        public static Product ConvertToModel(Product m)
+        {
+            if (m == null)
+            {
+                return new Product();
+            }
+
+            var res = new Product
+            {
+                Id = m.Id,
+                CategoryId = m.CategoryId,
+                Name = m.Name,
+                Price = m.Price,
+                Descriptions = m.Descriptions,
+                Category = m.Category,
                 //OrderDetails = OrderDetailDto.ConvertToDto(m.OrderDetails)
             };
 
@@ -55,6 +76,7 @@ namespace ABCostmeticServer.DTO
                           Name = m.Name,
                           Price = m.Price,
                           Descriptions = m.Descriptions,
+                          Category = CategoryDto.ConvertToDto(m.Category),
                       };
             return res.ToList();
         }

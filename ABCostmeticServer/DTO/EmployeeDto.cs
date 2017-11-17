@@ -33,7 +33,7 @@ namespace ABCostmeticServer.DTO
 
         #region Method
 
-        public static ICollection<EmployeeDto> ConvertToDto(ICollection<Employee> list)
+        public static IEnumerable<EmployeeDto> ConvertToDto(IEnumerable<Employee> list)
         {
             if (list == null)
             {
@@ -53,7 +53,10 @@ namespace ABCostmeticServer.DTO
                           DateOfBirth = m.DateOfBirth,
                           Gender = m.Gender,
                           Phone = m.Phone,
-                          Email = m.Email
+                          Email = m.Email,
+                          StaffType = StaffTypeDto.ConvertToDto(m.StaffType),
+                          Nationality1 = NationalDto.ConvertToDto(m.Nationality1),
+                          Store = StoreDto.ConvertToDto(m.Store)
                       };
             return res.ToList();
         }
@@ -78,9 +81,39 @@ namespace ABCostmeticServer.DTO
                 Gender = m.Gender,
                 Phone = m.Phone,
                 Email = m.Email,
-                //Nationality1 = NationalDto.ConvertToDto(m.Nationality1),
+                Nationality1 = NationalDto.ConvertToDto(m.Nationality1),
                 StaffType = StaffTypeDto.ConvertToDto(m.StaffType),
-                //Store = StoreDto.ConvertToDto(m.Store),
+                Store = StoreDto.ConvertToDto(m.Store),
+                //Orders = OrderDto.ConvertToDto(m.Orders),
+                //Users = UserDto.ConvertToDto(m.Users)
+            };
+
+            return res;
+        }
+
+        public static Employee ConvertToModel(EmployeeDto m)
+        {
+            if (m == null)
+            {
+                return new Employee();
+            }
+
+            var res = new Employee
+            {
+                Id = m.Id,
+                StaffTypeId = m.StaffTypeId,
+                StoreId = m.StoreId,
+                FullName = m.FullName,
+                IdentityCard = m.IdentityCard,
+                Nationality = m.Nationality,
+                Address = m.Address,
+                DateOfBirth = m.DateOfBirth,
+                Gender = m.Gender,
+                Phone = m.Phone,
+                Email = m.Email,
+                Nationality1 = NationalDto.ConvertToModel(m.Nationality1),
+                StaffType = StaffTypeDto.ConvertToModel(m.StaffType),
+                Store = StoreDto.ConvertToModel(m.Store),
                 //Orders = OrderDto.ConvertToDto(m.Orders),
                 //Users = UserDto.ConvertToDto(m.Users)
             };

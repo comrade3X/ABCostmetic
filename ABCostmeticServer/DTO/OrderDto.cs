@@ -40,15 +40,38 @@ namespace ABCostmeticServer.DTO
                 Seller = m.Seller,
                 Customer = m.Customer,
                 OrderDate = m.OrderDate,
-                //Customer1 = CustomerDto.ConvertToDto(m.Customer1),
-                //Employee = EmployeeDto.ConvertToDto(m.Employee),
+                Customer1 = CustomerDto.ConvertToDto(m.Customer1),
+                Employee = EmployeeDto.ConvertToDto(m.Employee),
+                OrderDetails = OrderDetailDto.ConvertToDto(m.OrderDetails),
+                Payments = PaymentDto.ConvertToDto(m.Payments)
+            };
+            return res;
+        }
+
+        public static Order ConvertToModel(OrderDto m)
+        {
+            if (m == null)
+            {
+                return new Order();
+            }
+
+            var res = new Order
+            {
+                Id = m.Id,
+                OrderCode = m.OrderCode,
+                Seller = m.Seller,
+                Customer = m.Customer,
+                OrderDate = m.OrderDate,
+                Customer1 = CustomerDto.ConvertToModel(m.Customer1),
+                Employee = EmployeeDto.ConvertToModel(m.Employee),
+                
                 //OrderDetails = OrderDetailDto.ConvertToDto(m.OrderDetails),
                 //Payments = PaymentDto.ConvertToDto(m.Payments)
             };
             return res;
         }
 
-        public static List<OrderDto> ConvertToDto(ICollection<Order> list)
+        public static IEnumerable<OrderDto> ConvertToDto(IEnumerable<Order> list)
         {
             if (list == null)
             {
@@ -63,6 +86,10 @@ namespace ABCostmeticServer.DTO
                           Seller = m.Seller,
                           Customer = m.Customer,
                           OrderDate = m.OrderDate,
+                          Customer1 = CustomerDto.ConvertToDto(m.Customer1),
+                          Employee = EmployeeDto.ConvertToDto(m.Employee),
+                          OrderDetails = OrderDetailDto.ConvertToDto(m.OrderDetails),
+                          Payments = PaymentDto.ConvertToDto(m.Payments)
                       };
             return res.ToList();
         }

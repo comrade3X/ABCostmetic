@@ -1,21 +1,63 @@
 ﻿@model ABCostmeticClient.Models.User
 
 @{
+    Layout = "../Shared/_Membership.cshtml";
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+<div class="container">
+    <div class="row">
+        <div class="Absolute-Center is-Responsive">
+            <div id="logo-container"></div>
+            <div class="col-sm-12 col-md-10 col-md-offset-1">
+                <form role="form" action="@Url.Action("Login", "Account")" method="post">
+                    @Html.ValidationSummary(true)
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        @Html.TextBoxFor(x => x.Username, new { @class = "form-control", @placeholder = "User name" })
+                    </div>
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "Password" })
+                    </div>
 
-<form role="form" action="/Account/Login" method="post">
-    @Html.ValidationSummary(true)
-    <div class="form-group">
-        @Html.LabelFor(x => x.Username, new { @class = "control-label" })
-        @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="form-group">
-        @Html.LabelFor(x => x.Password, new { @class = "control-label" })
-        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
-    </div>
-    <button type="submit" class="btn btn-default">Login</button>
-</form>
+
+<style>
+    div.well {
+        height: 250px;
+    }
+
+    .Absolute-Center {
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+        .Absolute-Center.is-Responsive {
+            width: 50%;
+            height: 50%;
+            min-width: 200px;
+            max-width: 400px;
+            padding: 40px;
+        }
+
+    #logo-container {
+        margin: auto;
+        margin-bottom: 10px;
+        width: 200px;
+        height: 30px;
+        background-image: url('http://placehold.it/200x30/000000/ffffff/&text=LOGIN');
+    }
+</style>

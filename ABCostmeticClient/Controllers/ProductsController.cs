@@ -4,20 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ABCostmeticClient.Models;
+
 namespace ABCostmeticClient.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
+        private readonly ProductClient _productClient;
+
+        public ProductsController()
+        {
+            _productClient = new ProductClient();
+        }
+
         // GET: Products
         public ActionResult Index()
         {
-            var userClient = new UserClient();
-            var user = new User
-            {
-                Username = "admin",
-                Password = "123456",
-            };
-            ViewBag.User = userClient.Login(user);
+            ViewBag.List = _productClient.FindAll();
 
             return View();
         }

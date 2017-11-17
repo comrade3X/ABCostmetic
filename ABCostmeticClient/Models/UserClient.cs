@@ -33,5 +33,25 @@ namespace ABCostmeticClient.Models
                 return null;
             }
         }
+
+        public StaffType GetUserRole(int emplId)
+        {
+            try
+            {
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(BASE_URL)
+                };
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var query = $"?emplId={emplId}";
+                var response = client.GetAsync("getuserrole" + query).Result;
+
+                return response.IsSuccessStatusCode ? response.Content.ReadAsAsync<StaffType>().Result : null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

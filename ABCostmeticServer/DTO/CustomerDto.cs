@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ABCostmeticServer.Models;
+using System.Linq;
 
 namespace ABCostmeticServer.DTO
 {
@@ -41,6 +42,52 @@ namespace ABCostmeticServer.DTO
                 Email = m.Email,
                 //Orders = OrderDto.ConvertToDto(m.Orders)
             };
+
+            return res;
+        }
+
+        public static Customer ConvertToModel(CustomerDto m)
+        {
+            if (m == null)
+            {
+                return new Customer();
+            }
+
+            var res = new Customer
+            {
+                Id = m.Id,
+                FullName = m.FullName,
+                IdentityCard = m.IdentityCard,
+                Gender = m.Gender,
+                DateOfBirth = m.DateOfBirth,
+                Address = m.Address,
+                Phone = m.Phone,
+                Email = m.Email
+                //Orders = OrderDto.ConvertToDto(m.Orders)
+            };
+
+            return res;
+        }
+
+        public static IEnumerable<CustomerDto> ConvertToDto(IEnumerable<Customer> list)
+        {
+            if (list == null)
+            {
+                return new List<CustomerDto>();
+            }
+
+            var res = from m in list
+                      select new CustomerDto
+                      {
+                          Id = m.Id,
+                          FullName = m.FullName,
+                          IdentityCard = m.IdentityCard,
+                          Gender = m.Gender,
+                          DateOfBirth = m.DateOfBirth,
+                          Address = m.Address,
+                          Phone = m.Phone,
+                          Email = m.Email
+                      };
 
             return res;
         }

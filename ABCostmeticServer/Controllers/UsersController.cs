@@ -33,11 +33,6 @@ namespace ABCostmeticServer.Controllers
         }
 
         [Route("api/users/getuserrole")]
-        /// <summary>
-        /// Get user role from user object
-        /// </summary>
-        /// <param name="emplId">Staff id </param>
-        /// <returns>Staff type object</returns>
         public IHttpActionResult GetUserRole(int emplId)
         {
             if (emplId == 0)

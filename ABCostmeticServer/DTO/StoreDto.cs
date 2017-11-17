@@ -39,6 +39,25 @@ namespace ABCostmeticServer.DTO
             return res;
         }
 
+        public static Store ConvertToModel(StoreDto m)
+        {
+            if (m == null)
+            {
+                return new Store();
+            }
+
+            var res = new Store
+            {
+                Id = m.Id,
+                Nationality = m.Nationality,
+                Address = m.Address,
+                //Nationality1 = NationalDto.ConvertToDto(m.Nationality1),
+                //Employees = EmployeeDto.ConvertToDto(m.Employees)
+            };
+
+            return res;
+        }
+
         public static ICollection<StoreDto> ConvertToDto(ICollection<Store> list)
         {
             if (list == null)

@@ -30,7 +30,26 @@ namespace ABCostmeticServer.DTO
             {
                 Id = m.Id,
                 Name = m.Name,
-                ZipCode = m.ZipCode,
+                ZipCode = m.ZipCode
+                //Employees = EmployeeDto.ConvertToDto(m.Employees),
+                //Stores = StoreDto.ConvertToDto(m.Stores)
+            };
+
+            return res;
+        }
+
+        public static Nationality ConvertToModel(NationalDto m)
+        {
+            if (m == null)
+            {
+                return new Nationality();
+            }
+
+            var res = new Nationality
+            {
+                Id = m.Id,
+                Name = m.Name,
+                ZipCode = m.ZipCode
                 //Employees = EmployeeDto.ConvertToDto(m.Employees),
                 //Stores = StoreDto.ConvertToDto(m.Stores)
             };

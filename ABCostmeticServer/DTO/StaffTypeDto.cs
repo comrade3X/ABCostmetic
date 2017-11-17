@@ -32,6 +32,22 @@ namespace ABCostmeticServer.DTO
             return res;
         }
 
+        public static StaffType ConvertToModel(StaffTypeDto m)
+        {
+            if (m == null)
+            {
+                return new StaffType();
+            }
+            var res = new StaffType
+            {
+                Id = m.Id,
+                Type = m.Type
+                //Employees = EmployeeDto.ConvertToDto(m.Employees)
+            };
+
+            return res;
+        }
+
         #endregion Method
     }
 }
