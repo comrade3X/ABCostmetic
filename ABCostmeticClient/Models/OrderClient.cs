@@ -83,5 +83,38 @@ namespace ABCostmeticClient.Models
                 return null;
             }
         }
+
+        public IEnumerable<Order> Search(string searchFor, DateTime? from, DateTime? to)
+        {
+            try
+            {
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(BASE_URL)
+                };
+
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = new
+                {
+                    searchFor,
+                    from = from?.ToString("MM/dd/yyyy"),
+                    to = to?.ToString("MM/dd/yyyy"),
+                };
+
+                var response = client.PostAsJsonAsync("Search", json).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return response.Content.ReadAsAsync<IEnumerable<Order>>().Result;
+                }
+
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

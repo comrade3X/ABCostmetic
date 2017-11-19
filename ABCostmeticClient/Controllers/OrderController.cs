@@ -31,9 +31,14 @@ namespace ABCostmeticClient.Controllers
             return View();
         }
 
-        public ActionResult _ListOrder()
+        public ActionResult _ListOrder(string searchFor, DateTime? from, DateTime? to)
         {
-            var list = _orderClient.FindAll();
+            if (from != null || to != null)
+            {
+                searchFor = "";
+            }
+
+            var list = _orderClient.Search(searchFor, from, to);
 
             return PartialView("~/Views/Employee/_employeeOrders.cshtml", list);
         }
