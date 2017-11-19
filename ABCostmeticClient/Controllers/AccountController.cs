@@ -7,9 +7,9 @@ namespace ABCostmeticClient.Controllers
     using Models;
     using System.Web.Security;
 
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-        private UserClient _userClient;
+        private readonly UserClient _userClient;
 
         public AccountController()
         {
@@ -33,21 +33,24 @@ namespace ABCostmeticClient.Controllers
             {
                 FormsAuthentication.SetAuthCookie(userLogin.StaffId.ToString(), true);
 
+                Session["UserId"] = userLogin.StaffId.ToString();
+
                 var userRole = _userClient.GetUserRole(userLogin.StaffId);
+                //var userData = userLogin.StaffId + "," + userRole;
 
                 var authTicket = new FormsAuthenticationTicket(1, userLogin.Username, DateTime.Now, DateTime.Now.AddMinutes(20), false, userRole.Type);
                 var encryptedTicket = FormsAuthentication.Encrypt(authTicket);
                 var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                 HttpContext.Response.Cookies.Add(authCookie);
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("UserProfile", "Employee");
             }
 
             ModelState.AddModelError("", "User name or password invalid.");
 
             return View();
         }
-       
+
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();

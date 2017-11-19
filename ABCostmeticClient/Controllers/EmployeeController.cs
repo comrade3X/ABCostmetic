@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using ABCostmeticClient.Models;
 
 namespace ABCostmeticClient.Controllers
@@ -42,6 +43,13 @@ namespace ABCostmeticClient.Controllers
             }
 
             return View(emp);
+        }
+
+        public ActionResult UserProfile()
+        {
+            var userId = Session["UserId"];
+
+            return userId == null ? RedirectToAction("Error500", "Error") : RedirectToAction("Detail", new { id = userId });
         }
 
         public ActionResult _EmployeeOrders(int emplId)

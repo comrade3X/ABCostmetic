@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ABCostmeticClient.Models.Order>
+﻿@using System.Globalization
+@model IEnumerable<ABCostmeticClient.Models.Order>
 @{
     ViewBag.Title = "_employeeOrders";
 }
@@ -8,6 +9,12 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4>Employee Order</h4>
+                <a href="@Url.Action("Create", "Order")" class="btn">
+                    <span class="glyphicon glyphicon-plus">
+
+                    </span>
+                    Add Order
+                </a>
             </div>
             <div class="panel-body">
                 <table class="table table-striped" style="border-collapse: collapse;">
@@ -16,6 +23,7 @@
                             <th>&nbsp;</th>
                             <th>Order Id</th>
                             <th>Order Code</th>
+                            <th>Seller</th>
                             <th>Customer</th>
                             <th>Order Date</th>
                         </tr>
@@ -40,16 +48,19 @@
                                     </td>
                                     <td>@item.Id</td>
                                     <td>@item.OrderCode</td>
+                                    <td>
+                                        <a href="@Url.Action("Detail", "Employee", new { id = item.Employee.Id })">@item.Employee.FullName</a>
+                                    </td>
                                     <td>@item.Customer1.FullName</td>
-                                    <td>@item.OrderDate.ToShortDateString()</td>
+                                    <td>@item.OrderDate.ToString(CultureInfo.InvariantCulture)</td>
                                 </tr>
                                 if (item.OrderDetails == null || item.OrderDetails.Count == 0)
                                 {
                                     <tr>
                                         <td colspan="12" class="hiddenRow">
-                                        <div class="accordian-body collapse" id="@item.Id">
-                                            <b>  No Data</b>
-                                        </div>
+                                            <div class="accordian-body collapse" id="@item.Id">
+                                                <b>  No Data</b>
+                                            </div>
                                     </tr>
                                 }
                                 else

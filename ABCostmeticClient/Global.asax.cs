@@ -29,6 +29,7 @@ namespace ABCostmeticClient
                 {
                     var roles = authTicket.UserData.Split(',');
                     HttpContext.Current.User = new System.Security.Principal.GenericPrincipal(new FormsIdentity(authTicket), roles);
+
                 }
             }
         }

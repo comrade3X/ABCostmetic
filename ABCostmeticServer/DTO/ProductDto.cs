@@ -41,7 +41,7 @@ namespace ABCostmeticServer.DTO
             return res;
         }
 
-        public static Product ConvertToModel(Product m)
+        public static Product ConvertToModel(ProductDto m)
         {
             if (m == null)
             {
@@ -55,7 +55,7 @@ namespace ABCostmeticServer.DTO
                 Name = m.Name,
                 Price = m.Price,
                 Descriptions = m.Descriptions,
-                Category = m.Category,
+                Category = CategoryDto.ConvertToModel(m.Category)
                 //OrderDetails = OrderDetailDto.ConvertToDto(m.OrderDetails)
             };
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -86,39 +87,58 @@ namespace ABCostmeticServer.Controllers
 
         // POST: api/Orders
         [ResponseType(typeof(Order))]
-        public IHttpActionResult PostOrder(OrderDto orderDto)
+        public IHttpActionResult PostOrder([FromBody]OrderDto orderDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+          
+            var order = new Order
+            {
+                Customer = orderDto.Customer,
+                Seller = orderDto.Seller,
+                OrderDate = DateTime.Now,
+                OrderCode = GenerateOrderCode(),
+                //OrderDetails = new List<OrderDetail>
+                //{
+                //    new OrderDetail
+                //    {
+                //       ProductId = 3829,
+                //        Quantity = 1
+                //    },
+                //    new OrderDetail()
+                //    {
+                //        ProductId = 3830,
+                //        Quantity = 2
+                //    },
+                //}
+            };
+            
+            _db.Orders.Add(order);
+            _db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = order.Id }, order);
+        }
+
+        public IHttpActionResult PostOrderDetail([FromBody]OrderDetailDto orderDetailsDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var order = OrderDto.ConvertToModel(orderDto);
-            //var order = new Order()
-            //{
-            //    Customer1 = new Customer { Id = 3 },
-            //    Employee = new Employee() { Id = 3 },Customer = 3,
-            //    Seller = 3,
-            //    OrderDate = DateTime.Now,
-            //    OrderDetails = new List<OrderDetail>()
-            //    {
-            //        new OrderDetail()
-            //        {
-            //            Product = new Product(){Id = 3829},
-            //            Quantity = 1,
-            //        },
-            //        new OrderDetail()
-            //        {
-            //            Product = new Product(){Id = 3830},
-            //            Quantity = 2,
-            //        },
-            //    }
-            //};
+            var orderDetails = new OrderDetail()
+            {
+               OrderId = orderDetailsDto.OrderId,
+               ProductId = orderDetailsDto.ProductId,
+               Quantity = orderDetailsDto.Quantity
+            };
 
-            _db.Orders.Add(order);
+            _db.OrderDetails.Add(orderDetails);
             _db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = order.Id }, order);
+            return CreatedAtRoute("DefaultApi", new { id = orderDetails.Id }, orderDetails);
         }
 
         // DELETE: api/Orders/5
@@ -149,6 +169,13 @@ namespace ABCostmeticServer.Controllers
         private bool OrderExists(int id)
         {
             return _db.Orders.Count(e => e.Id == id) > 0;
+        }
+
+        private string GenerateOrderCode()
+        {
+            var res ="ORD123";
+
+            return res;
         }
     }
 }

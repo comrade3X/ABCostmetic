@@ -1,0 +1,136 @@
+﻿@model ABCostmeticClient.Models.OrderViewModel
+@{
+    ViewBag.Title = "Create";
+}
+<h3>Create Order:</h3>
+<div class="container">
+    <div class="row">
+        <form role="form">
+            <div class="form-group">
+                @Html.Label("Seller", new { @class = "control-label col-md-2" })
+                @Html.ActionLink(Model.Employee.FullName, "UserProfile", "Employee")
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Customer information</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        @Html.Label("Name", new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(x => x.Customer1.FullName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Phone", new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(x => x.Customer1.Phone, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Email", new { @class = "control-label col-md-2" })
+                        @Html.TextBoxFor(x => x.Customer1.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Order Details</div>
+                <div class="panel-body" id="order-detail-body">
+                    <div class="details-form">
+                        <div class="form-group col-md-6 row">
+                            <div class="col-md-2">
+                                @Html.Label("Product", new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-7">
+                                @Html.DropDownListFor(x => x.ProductId, Model.ProductSelectList, new { @class = "form-control product-Id" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-5 row">
+                            <div class="col-md-2">
+                                @Html.LabelFor(x => x.Quanlity, new { @class = "control-label" })
+                            </div>
+                            <div class="col-md-7">
+                                @Html.TextBoxFor(x => x.Quanlity, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <table id="table-order-detail" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>&nbsp;</td>
+                                    <td>Product</td>
+                                    <td>Quanlity</td>
+                                </tr>
+                            </thead>
+                            <tbody id="details">
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button type="button" id="add-product" class="btn">Add new..</button>
+                </div>
+            </div>
+
+            <button type="button" id="btn-submit" class="btn btn-default pull-right">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(".product-Id").select2();
+    $(document).ready(function () {
+        var count = 1;
+        var orderDetails = [];
+        var customer = {};
+
+        $("#add-product").click(function (e) {
+            var productName = $('#ProductId :selected').text();
+            var productId = $('#ProductId').val();
+            var quanlity = $('#Quanlity').val();
+
+            var cusName = $('#Customer1_FullName').val();
+            var cusPhone = $('#Customer1_Phone').val();
+            var cusEmail = $('#Customer1_Email').val();
+
+            customer= {
+                FullName: cusName,
+                Phone: cusPhone,
+                Email:cusEmail
+            }
+
+            var detail = {
+                ProductId: productId,
+                Quantity: quanlity
+            };
+
+            orderDetails.push(detail);
+
+            var tr = "<tr>"
+                + "<td>" + count + "</td>"
+                + "<td>" + productName + "</td>"
+                + "<td>" + quanlity + "</td>"
+                + "</tr>";
+
+            $("#details").append(tr);
+            count++;
+        });
+
+        $("#btn-submit").click(function (e) {
+            var formData= {
+                orderDetails: orderDetails,
+                customer: customer
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Create","Order")",
+                data: formData,
+                dataType: "json",
+                success: function (resp) {
+                    window.location.href = resp.url;
+                }
+            });
+        });
+    });
+</script>

@@ -40,6 +40,46 @@ namespace ABCostmeticServer.DTO
             return res;
         }
 
+        public static OrderDetail ConvertToModel(OrderDetailDto m)
+        {
+            if (m == null)
+            {
+                return new OrderDetail();
+            }
+
+            var res = new OrderDetail
+            {
+                Id = m.Id,
+                OrderId = m.OrderId,
+                ProductId = m.ProductId,
+                Quantity = m.Quantity,
+                Product = ProductDto.ConvertToModel(m.Product)
+                //Order = OrderDto.ConvertToDto(m.Order)
+            };
+
+            return res;
+        }
+
+        public static List<OrderDetail> ConvertToModel(ICollection<OrderDetailDto> list)
+        {
+            if (list == null)
+            {
+                return new List<OrderDetail>();
+            }
+            var res = from m in list
+                select new OrderDetail
+                {
+                    Id = m.Id,
+                    OrderId = m.OrderId,
+                    ProductId = m.ProductId,
+                    Quantity = m.Quantity,
+                    Product = ProductDto.ConvertToModel(m.Product)
+                };
+
+            return res.ToList();
+        }
+
+
         public static List<OrderDetailDto> ConvertToDto(ICollection<OrderDetail> list)
         {
             if (list == null)

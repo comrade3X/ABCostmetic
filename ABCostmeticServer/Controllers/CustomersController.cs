@@ -79,7 +79,7 @@ namespace ABCostmeticServer.Controllers
 
         // POST: api/Customers
         [ResponseType(typeof(Customer))]
-        public IHttpActionResult PostCustomer(CustomerDto customerDto)
+        public IHttpActionResult PostCustomer([FromBody]CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace ABCostmeticServer.Controllers
             }
 
             var customer = CustomerDto.ConvertToModel(customerDto);
-
+            customer.DateOfBirth = DateTime.Now;
             _db.Customers.Add(customer);
             _db.SaveChanges();
 
@@ -103,7 +103,7 @@ namespace ABCostmeticServer.Controllers
             {
                 return NotFound();
             }
-           
+
             _db.Customers.Remove(customer);
             _db.SaveChanges();
 

@@ -64,8 +64,8 @@ namespace ABCostmeticServer.DTO
                 OrderDate = m.OrderDate,
                 Customer1 = CustomerDto.ConvertToModel(m.Customer1),
                 Employee = EmployeeDto.ConvertToModel(m.Employee),
-                
-                //OrderDetails = OrderDetailDto.ConvertToDto(m.OrderDetails),
+
+                OrderDetails = OrderDetailDto.ConvertToModel(m.OrderDetails)
                 //Payments = PaymentDto.ConvertToDto(m.Payments)
             };
             return res;

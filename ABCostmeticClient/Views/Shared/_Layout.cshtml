@@ -6,9 +6,12 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/js")
+
+    <link href="~/Content/css/select2.min.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,8 +27,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Employee", "Index", "Employee")</li>
+                    <li>@Html.ActionLink("Order", "Index", "Order")</li>
                 </ul>
                 @{
                     if (HttpContext.Current.User.Identity.IsAuthenticated)
@@ -37,7 +40,7 @@
                                     @HttpContext.Current.User.Identity.Name
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="@Url.Action("UserProfile", "Employee")">Profile</a></li>
                                     <li>
                                         <a href="@Url.Action("Logout", "Account")">Logout</a>
                                     </li>
